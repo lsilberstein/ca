@@ -45,7 +45,7 @@ def _(BASE_DIR, Image, av, tqdm):
             for frame in tqdm(f.decode(video=0), total=f.streams.video[0].frames):
                 if (counter % 5 == 0):
                     images.append(frame.to_image().resize((1, frame.height), resample=Image.Resampling.HAMMING))
-            
+
                 counter += 1
 
             return images
@@ -76,8 +76,10 @@ def _(Image, imagestrips, tqdm):
 
         return canvas
 
-    create_barcode()
-    return (create_barcode,)
+    barcode = create_barcode()
+    barcode.save("barcode.jpg")
+    barcode
+    return barcode, create_barcode
 
 
 if __name__ == "__main__":
